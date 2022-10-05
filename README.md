@@ -2,6 +2,8 @@
 
 A web server written from scratch in C++
 
+<img src="demo.png" width="400"/>
+
 # Building
 
 build using
