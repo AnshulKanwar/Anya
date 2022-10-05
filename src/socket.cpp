@@ -7,7 +7,8 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-int Socket::socket(int port) {
+int Socket::socket(int port)
+{
     struct addrinfo hints, *res;
     int status;
     int sockfd;
@@ -23,13 +24,13 @@ int Socket::socket(int port) {
     if ((status = getaddrinfo(nullptr, port_str.c_str(), &hints, &res)) != 0)
     {
         std::cerr << "getaddrinfo error: " << gai_strerror(status) << std::endl;
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if ((sockfd = ::socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1)
     {
         perror("socket");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
@@ -37,7 +38,7 @@ int Socket::socket(int port) {
     if (bind(sockfd, res->ai_addr, res->ai_addrlen) == -1)
     {
         perror("bind");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     freeaddrinfo(res);
@@ -52,7 +53,7 @@ int Socket::listen(int port)
     if (::listen(sockfd, 10) == -1)
     {
         perror("bind");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     return sockfd;
