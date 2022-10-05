@@ -30,11 +30,14 @@ std::stringstream read_file(const std::string &path)
 
     if (!ifs.is_open())
     {
-        spdlog::error("Could not open the file - '{}'", path);
-        exit(EXIT_FAILURE);
+        throw std::runtime_error("Could not open file - '" + path + "'");
+        std::ifstream error404("./404.html");
+        buffer << error404.rdbuf();
     }
-
-    buffer << ifs.rdbuf();
+    else
+    {
+        buffer << ifs.rdbuf();
+    }
 
     return buffer;
 }
