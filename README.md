@@ -2,7 +2,7 @@
 
 A web server written from scratch in C++
 
-<img src="demo.png" width="400"/>
+<img src="demo.png" width="800"/>
 
 # Building
 
