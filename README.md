@@ -15,6 +15,7 @@ make
 - [ ] Add error handling
 - [ ] Add tests
 - [x] Add logging
+- [ ] select()
 - [ ] Document Code
 - [ ] Use std::format (C++20) (response.cpp)
 - [ ] Express like API

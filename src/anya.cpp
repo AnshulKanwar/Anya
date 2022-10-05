@@ -66,13 +66,23 @@ void Anya::handle_request(const char *raw_request)
 Response Anya::build_response(const Request &request)
 {
     std::stringstream sstream;
+
     int status_code;
     std::string reason_phrase;
+    std::string filename;
 
     try
     {
-        sstream = read_file("." + request.uri);
+        if (request.uri.compare("/") == 0)
+        {
+            filename = "./index.html";
+        }
+        else
+        {
+            filename = "." + request.uri;
+        }
 
+        sstream = read_file(filename);
         status_code = 200;
         reason_phrase = "OK";
     }
@@ -82,10 +92,12 @@ Response Anya::build_response(const Request &request)
 
         status_code = 404;
         reason_phrase = "NOT FOUND";
-        sstream = read_file("./404.html");
+        filename = "./404.html";
+        sstream = read_file(filename);
     }
 
     Response response("HTTP/1.1", status_code, reason_phrase, sstream.str());
+    response.set_header("Content-Type", get_content_type(get_extension(filename)));
     return response;
 }
 

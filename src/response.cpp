@@ -42,3 +42,25 @@ std::string Response::response_str()
 
     return response_ss.str();
 }
+
+void Response::set_header(const std::string &key, const std::string &value)
+{
+    this->headers[key] = value;
+}
+
+const std::string &Response::get_header(const std::string &key)
+{
+    return this->headers.at(key);
+}
+
+std::string get_content_type(const std::string &extension)
+{
+    if (content_type_map.find(extension) == content_type_map.end())
+    {
+        return "application/octet-stream";
+    }
+    else
+    {
+        return content_type_map.at(extension);
+    }
+}

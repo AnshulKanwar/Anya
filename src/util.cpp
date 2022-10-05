@@ -41,3 +41,8 @@ std::stringstream read_file(const std::string &path)
 
     return buffer;
 }
+
+std::string get_extension(const std::string &filename)
+{
+    return filename.substr(filename.find_last_of("."));
+}

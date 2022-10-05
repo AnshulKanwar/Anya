@@ -12,4 +12,6 @@ std::vector<std::string> split(const std::string &s, char delim);
 
 std::stringstream read_file(const std::string &path);
 
+std::string get_extension(const std::string &filename);
+
 #endif
