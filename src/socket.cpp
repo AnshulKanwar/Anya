@@ -1,6 +1,7 @@
 #include "socket.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+
 #include <string>
 
 #include <sys/types.h>
@@ -23,7 +24,7 @@ int Socket::socket(int port)
 
     if ((status = getaddrinfo(nullptr, port_str.c_str(), &hints, &res)) != 0)
     {
-        std::cerr << "getaddrinfo error: " << gai_strerror(status) << std::endl;
+        spdlog::error("getaddrinfo error: {}", gai_strerror(status));
         exit(EXIT_FAILURE);
     }
 

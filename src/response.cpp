@@ -2,7 +2,6 @@
 
 #include <string>
 #include <sstream>
-#include <iostream>
 #include <unordered_map>
 // #include <format>
 
@@ -31,7 +30,7 @@ std::string Response::response_str()
                 << "\r\n";
 
     // headers
-    for (auto& it: headers)
+    for (auto &it : headers)
     {
         response_ss << it.first << ": " << it.second << "\r\n";
     }

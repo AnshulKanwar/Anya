@@ -1,6 +1,7 @@
 #include "util.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+
 #include <fstream>
 #include <sstream>
 
@@ -27,8 +28,9 @@ std::stringstream read_file(const std::string &path)
     std::ifstream ifs(path);
     std::stringstream buffer;
 
-    if (!ifs.is_open()) {
-        std::cerr << "Could not open the file - '" << path << "'" << std::endl;
+    if (!ifs.is_open())
+    {
+        spdlog::error("Could not open the file - '{}'", path);
         exit(EXIT_FAILURE);
     }
 

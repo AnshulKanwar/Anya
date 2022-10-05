@@ -24,8 +24,7 @@ public:
         std::string http_version,
         int status_code,
         std::string reason_phrase,
-        std::string message_body
-    );
+        std::string message_body);
 
     std::string response_str();
 };

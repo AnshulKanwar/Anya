@@ -1,7 +1,8 @@
 #include "request.h"
 #include "util.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+
 #include <string>
 #include <sstream>
 #include <unordered_map>
@@ -48,7 +49,7 @@ void Request::parse_method(const std::string &method)
     }
     else
     {
-        std::cerr << "Unknown request method " << method << std::endl;
+        spdlog::error("Unknown request method {}", method);
         exit(EXIT_FAILURE);
     }
 }

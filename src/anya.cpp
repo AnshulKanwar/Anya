@@ -4,7 +4,8 @@
 #include "response.h"
 #include "util.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+
 #include <unistd.h>
 
 #include <sys/socket.h>
@@ -51,10 +52,13 @@ void Anya::handle_connection()
 void Anya::handle_request(const char *raw_request)
 {
     std::string request_str = raw_request;
+    spdlog::info("Request:\n{}", raw_request);
     Request request(request_str);
 
     Response response = build_response(request);
     std::string response_str = response.response_str();
+
+    spdlog::info("Response:\n{}", response_str);
 
     send_response(response_str);
 }
@@ -80,11 +84,12 @@ void Anya::listen(int port)
 {
     int sockfd = Socket::listen(port);
 
-    std::cout << "Listening on port " << port << " with sockfd = " << sockfd << std::endl;
+    spdlog::info("Listening on port {}", port);
 
     while (true)
     {
         int client_fd = accept_connection(sockfd);
+        spdlog::info("Received Connection");
         this->sockfd = client_fd;
         handle_connection();
     }
