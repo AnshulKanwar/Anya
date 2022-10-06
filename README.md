@@ -14,10 +14,12 @@ make
 
 # TODO
 
+- [ ] Express like API
 - [ ] Add error handling
 - [ ] Add tests
 - [x] Add logging
+- [ ] Log Custom Objects
+- [ ] Colored Logging
 - [ ] select()
 - [ ] Document Code
-- [ ] Use std::format (C++20) (response.cpp)
-- [ ] Express like API
+- [x] ~Use std::format (C++20)~ used fmt

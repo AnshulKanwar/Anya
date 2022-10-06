@@ -1,4 +1,5 @@
 #include "util.h"
+#include "stb_image.h"
 
 #include <spdlog/spdlog.h>
 
@@ -31,13 +32,13 @@ std::stringstream read_file(const std::string &path)
     if (!ifs.is_open())
     {
         throw std::runtime_error("Could not open file - '" + path + "'");
-        std::ifstream error404("./404.html");
-        buffer << error404.rdbuf();
     }
     else
     {
         buffer << ifs.rdbuf();
     }
+
+    ifs.close();
 
     return buffer;
 }

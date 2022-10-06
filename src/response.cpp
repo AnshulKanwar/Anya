@@ -1,5 +1,7 @@
 #include "response.h"
 
+#include <fmt/core.h>
+
 #include <string>
 #include <sstream>
 #include <unordered_map>
@@ -20,27 +22,16 @@ Response::Response(
 
 std::string Response::response_str()
 {
-    // std::string fmt_str = "{} {} {} \r\n\r\n {}";
-    // std::string response_str = std::format(fmt_str, this->http_version, this->status_code, this->reason_phrase, this->message_body);
+    std::string status_line = fmt::format("{} {} {} \r\n", http_version, status_code, reason_phrase);
 
-    std::ostringstream response_ss;
-
-    // status_line
-    response_ss << http_version << " " << status_code << " " << reason_phrase << " "
-                << "\r\n";
-
-    // headers
+    std::string header_str = "";
     for (auto &it : headers)
     {
-        response_ss << it.first << ": " << it.second << "\r\n";
+        header_str += fmt::format("{}: {}\r\n", it.first, it.second);
     }
 
-    response_ss << "\r\n";
-
-    // message body
-    response_ss << message_body;
-
-    return response_ss.str();
+    std::string res_str = fmt::format("{}{}\r\n{}", status_line, header_str, message_body);
+    return res_str;
 }
 
 void Response::set_header(const std::string &key, const std::string &value)

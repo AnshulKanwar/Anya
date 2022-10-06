@@ -52,13 +52,13 @@ void Anya::handle_connection()
 void Anya::handle_request(const char *raw_request)
 {
     std::string request_str = raw_request;
-    spdlog::info("Request:\n{}", raw_request);
+    spdlog::info("Request:\n{}\n\n\n", request_str.substr(0, 600));
     Request request(request_str);
 
     Response response = build_response(request);
     std::string response_str = response.response_str();
 
-    spdlog::info("Response:\n{}", response_str);
+    spdlog::info("Response:\n{}\n\n\n", response_str.substr(0, 600));
 
     send_response(response_str);
 }
@@ -104,7 +104,7 @@ Response Anya::build_response(const Request &request)
 void Anya::send_response(const std::string &response_str)
 {
     const char *response_c_str = response_str.c_str();
-    if (send(this->sockfd, response_c_str, strlen(response_c_str), 0) == -1)
+    if (send(this->sockfd, response_c_str, response_str.length(), 0) == -1)
     {
         perror("send");
     }
