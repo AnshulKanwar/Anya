@@ -4,6 +4,12 @@ A web server written from scratch in C++
 
 <img src="demo.png" width="800"/>
 
+# Usage
+
+```shell
+anya --port 3000
+```
+
 # Building
 
 build using
