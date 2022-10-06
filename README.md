@@ -25,6 +25,7 @@ $ anya --port 3000
 
 ```shell
 git clone https://github.com/AnshulKanwar/Anya
+cd Anya
 make
 ```
 

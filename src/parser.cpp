@@ -9,7 +9,10 @@ namespace po = boost::program_options;
 po::variables_map Parser::parse(int argc, const char **argv)
 {
     po::options_description desc("Allowed options");
-    desc.add_options()("help", "produce help message")("port,p", po::value<int>()->default_value(3000), "set port to run on")("source-dir", po::value<std::string>()->default_value("."), "set the source directory");
+    desc.add_options()
+    ("help", "produce help message")
+    ("port,p", po::value<int>()->default_value(3000), "set port to run on")
+    ("source-dir", po::value<std::string>()->default_value("."), "set the source directory");
 
     po::positional_options_description p;
     p.add("source-dir", -1);

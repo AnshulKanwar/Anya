@@ -14,6 +14,6 @@ int main(int argc, const char **argv)
 
     spdlog::info("Starting App");
 
-    Anya app;
+    Anya app(vm["source-dir"].as<std::string>());
     app.listen(vm["port"].as<int>());
 }

@@ -10,6 +10,8 @@
 
 #include <sys/socket.h>
 
+Anya::Anya(std::string source_dir) : source_dir(source_dir) {}
+
 int Anya::accept_connection(int masterfd)
 {
     int client_fd;
@@ -65,20 +67,23 @@ Response Anya::build_response(const Request &request)
 
     int status_code;
     std::string reason_phrase;
+    std::string filepath;
     std::string filename;
 
     try
     {
         if (request.uri.compare("/") == 0)
         {
-            filename = "./index.html";
+            filename = "/index.html";
         }
         else
         {
-            filename = "." + request.uri;
+            filename = request.uri;
         }
 
-        sstream = read_file(filename);
+        filepath = this->source_dir + filename;
+        sstream = read_file(filepath);
+
         status_code = 200;
         reason_phrase = "OK";
     }
@@ -86,10 +91,12 @@ Response Anya::build_response(const Request &request)
     {
         spdlog::error(ex.what());
 
+        filename = "/404.html";
+        filepath = this->source_dir + filename;
+        sstream = read_file(filepath);
+
         status_code = 404;
         reason_phrase = "NOT FOUND";
-        filename = "./404.html";
-        sstream = read_file(filename);
     }
 
     Response response("HTTP/1.1", status_code, reason_phrase, sstream.str());
