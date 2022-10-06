@@ -7,7 +7,17 @@ A web server written from scratch in C++
 # Usage
 
 ```shell
-anya --port 3000
+$ anya --help
+
+Allowed options:
+  --help                    produce help message
+  -p [ --port ] arg (=3000) set port to run on
+  --source-dir arg (=.)     set the source directory
+
+
+$ anya --port 3000
+[2022-10-06 14:15:31.249] [info] Starting App
+[2022-10-06 14:15:31.251] [info] Listening on port 3000
 ```
 
 # Building
