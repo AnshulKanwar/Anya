@@ -12,9 +12,8 @@ anya --port 3000
 
 # Building
 
-build using
-
 ```shell
+git clone https://github.com/AnshulKanwar/Anya
 make
 ```
 
