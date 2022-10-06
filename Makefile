@@ -5,7 +5,7 @@ SRC_DIRS := ./src
 
 SRCS = $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s')
 
-CXXFLAGS = -std=c++20 -I ./include/ -lspdlog -lfmt
+CXXFLAGS = -std=c++20 -I ./include/ -lspdlog -lfmt -lboost_program_options
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(SRCS)
 	mkdir -p $(dir $@)

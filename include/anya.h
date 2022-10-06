@@ -15,7 +15,6 @@ private:
     void send_response(const std::string &response_str);
 
 public:
-    void get(int path);
     void listen(int port);
 };
 

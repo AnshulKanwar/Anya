@@ -10,10 +10,6 @@
 
 #include <sys/socket.h>
 
-void Anya::get(int path)
-{
-}
-
 int Anya::accept_connection(int masterfd)
 {
     int client_fd;
