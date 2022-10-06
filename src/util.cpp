@@ -1,5 +1,4 @@
 #include "util.h"
-#include "stb_image.h"
 
 #include <spdlog/spdlog.h>
 
