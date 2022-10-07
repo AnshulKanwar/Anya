@@ -12,6 +12,7 @@ po::variables_map Parser::parse(int argc, const char **argv)
     desc.add_options()
     ("help", "produce help message")
     ("port,p", po::value<int>()->default_value(3000), "set port to run on")
+    ("log", po::value<std::string>()->default_value("info"), "set logging level (debug, info, warn, err)")
     ("source-dir", po::value<std::string>()->default_value("."), "set the source directory");
 
     po::positional_options_description p;

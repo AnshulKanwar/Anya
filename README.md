@@ -8,10 +8,10 @@ A web server written from scratch in C++
 
 ```
 $ anya --help
-
 Allowed options:
   --help                    produce help message
   -p [ --port ] arg (=3000) set port to run on
+  --log arg (=info)         set logging level (debug, info, warn, err)
   --source-dir arg (=.)     set the source directory
 ```
 
