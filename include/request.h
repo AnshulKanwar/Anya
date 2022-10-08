@@ -45,6 +45,7 @@ private:
 public:
     std::string uri;
     Request(std::string &raw_request);
+    std::string get_request_line();
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "util.h"
 
 #include <spdlog/spdlog.h>
+#include <fmt/core.h>
 
 #include <string>
 #include <sstream>
@@ -61,7 +62,7 @@ void Request::parse_uri(const std::string &uri)
 
 void Request::parse_http_version(const std::string &http_version)
 {
-    this->http_version = http_version;
+    this->http_version = http_version.substr(0, http_version.find('\r'));
 }
 
 void Request::parse_header(const std::string &header)
@@ -73,4 +74,10 @@ void Request::parse_header(const std::string &header)
 void Request::parse_body(const std::string &body)
 {
     this->body = body;
+}
+
+std::string Request::get_request_line()
+{
+    const char *method_strs[] = {"GET", "POST", "PUT", "DELETE"};
+    return fmt::format("{} {} {}", method_strs[this->method], this->uri, this->http_version);
 }

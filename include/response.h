@@ -15,6 +15,7 @@ static std::unordered_map<std::string, std::string> content_type_map = {
     {".js", "application/javascript"},
     {".json", "application/json"},
     {".pdf", "application/pdf"},
+    {".wasm", "application/wasm"},
     {".xml", "application/xml"},
 
     //font
@@ -44,12 +45,12 @@ class Response
 {
 private:
     std::string http_version;
-    int status_code;
     std::string reason_phrase;
     std::unordered_map<std::string, std::string> headers;
     std::string message_body;
 
 public:
+    int status_code;
     Response(
         std::string http_version,
         int status_code,

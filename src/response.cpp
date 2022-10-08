@@ -5,7 +5,6 @@
 #include <string>
 #include <sstream>
 #include <unordered_map>
-// #include <format>
 
 Response::Response(
     std::string http_version,

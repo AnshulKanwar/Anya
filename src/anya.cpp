@@ -50,13 +50,16 @@ void Anya::handle_connection()
 void Anya::handle_request(const char *raw_request)
 {
     std::string request_str = raw_request;
-    spdlog::debug("Request:\n{}\n\n\n", request_str.substr(0, 600));
     Request request(request_str);
+
+    spdlog::debug("Request:\n{}\n\n\n", request_str.substr(0, 600));
 
     Response response = build_response(request);
     std::string response_str = response.response_str();
 
     spdlog::debug("Response:\n{}\n\n\n", response_str.substr(0, 600));
+
+    spdlog::info("{} - {}", request.get_request_line(), response.status_code);
 
     send_response(response_str);
 }
